@@ -69,7 +69,6 @@ namespace ControlDeAvances.Controllers
                     if (!base64.Contains("data:image/jpeg;base64,")) base64 = "data:image/jpeg;base64," + base64;
                 }
 
-                i.Id = Guid.NewGuid();
                 i.Imagen = base64;
                 if (repository.Create(i)) return "Información Almacenada";
                 else return "{}";

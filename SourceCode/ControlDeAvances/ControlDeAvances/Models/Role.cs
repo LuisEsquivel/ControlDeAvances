@@ -12,7 +12,7 @@ namespace ControlDeAvances
             Usuarios = new HashSet<Usuario>();
         }
 
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         public string Nombre { get; set; }
         public string IdUsuarioAlta { get; set; }
         public string IdUsuarioMod { get; set; }

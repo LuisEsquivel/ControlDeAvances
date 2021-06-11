@@ -7,9 +7,9 @@ namespace ControlDeAvances
 {
     public partial class Usuario
     {
-        public Guid Id { get; set; }
-        public Guid? IdRol { get; set; }
-        public Guid? IdUsuarioMod { get; set; }
+        public long Id { get; set; }
+        public long? IdRol { get; set; }
+        public long? IdUsuarioMod { get; set; }
         public string Nombre { get; set; }
         public string Usuario1 { get; set; }
         public string Password { get; set; }
