@@ -1,48 +1,148 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ControlDeAvances</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Control De Avances </title>
+    @RenderSection("SeoRender", false)
+
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!--DataTables CSS-->
+    <link rel="stylesheet" type="text/css" href="~/DataTables/css/addons/datatables.min.css" />
+
+    <!--JQUERY VA ANTES DE LOS ARCHIVOS JS Y DESPUÉS DE LOS CSS-->
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    <meta name="description" content="Dashboard UI Kit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+
+    <!--Fontawesome-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+
+    <!--DataTables JS-->
+    <script type="text/javascript" src="~/DataTables/js/addons/datatables.min.js"></script>
+    <script src="~/js/Generals.js"></script>
+    <script src="~/Jquery Form Steps/js/sweetalert.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ControlDeAvances</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <nav class="navbar navbar-expand-md navbar-light fixed sticky-top" id="nav" style="    background: #000529; /* Old browsers */
+    background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+    background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+    background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); opacity: 0.8;">
         <div class="container">
-            &copy; 2021 - ControlDeAvances - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="/Home/Index"> <img src="~/img/NOVO_logosmall-1.png" class="img-fluid" /> </a>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+                    @using ControlDeAvances.Controllers;
+                    @{ 
+                        IEnumerable<Fase> fc;
+
+                        using (ApplicationDbContext context = new ApplicationDbContext())
+                        {
+                            fc = context.Fases.ToList().AsEnumerable();
+                        }
+                     }
+        
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Fases
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @{
+
+                                foreach (var item in fc)
+                                {
+                                    <a class="nav-link" asp-area="" asp-controller="Documentacion" asp-action="Get/@item.Id"> @item.Nombre </a>
+                                }
+
+                            }
+                        </div>
+
+                    </li>
+
+                    </ul>
+
+            </div>
         </div>
+    </nav>
+
+
+
+
+
+    <main>
+        @RenderBody()
+    </main>
+
+
+
+
+    <footer class="footer bg-secondary pt-5 mt-5" id="footer">
+
+        <div class="text-center">
+            <a href="/Home/Index"> <i class="fa fa-home fa-5x" style="color:lightseagreen"> </i></a>
+
+
+            <ul class="list-unstyled list-inline text-center py-2">
+                <li class="list-inline-item">
+                    @*@{
+                        if (g.GetCookieValue(g.CockieName) == null && url != "/Registrarse/Index")
+                        {
+                            <a href="/Registrarse/Index" class="btn btn-danger btn-rounded">Registrarse</a>
+                        }
+                        else if (g.GetCookieValue(g.CockieName) == null && url != "/Login/Index")
+                        {
+                            <a href="/Login/Index" class="btn btn-primary btn-rounded">Iniciar Sesión</a>
+                        }
+                    }*@
+                </li>
+            </ul>
+
+            <hr>
+
+
+            <p class="mt-3 pFooter h6">Todos los Derechos Reservados @DateTime.Now.Year   Base NovoNStandSpeedWay</p>
+            <ul>
+                <li class="list-inline-item"> <i class="fa fa-facebook fa-2x" style="color:blue"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
+                <li class="list-inline-item"> <i class="fa fa-youtube fa-2x" style="color:darkred"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
+                <li class="list-inline-item"> <i class="fa fa-instagram fa-2x" style="color:hotpink"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
+                <li class="list-inline-item"> <i class="fa fa-whatsapp fa-2x" style="color:green"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
+            </ul>
+        </div>
+
+        <br />
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

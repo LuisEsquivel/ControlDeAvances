@@ -29,9 +29,10 @@ namespace ControlDeAvances.Controllers
             return View();
         }
 
-        public string List()
+        public string List(int idFase = 0)
         {
-            return JsonConvert.SerializeObject(repository.GetAll());
+            if (idFase == 0) return JsonConvert.SerializeObject(repository.GetAll());
+            return JsonConvert.SerializeObject(repository.GetByValues(x => x.IdFase == idFase));
         }
 
 
