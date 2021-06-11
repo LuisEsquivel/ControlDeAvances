@@ -12,8 +12,8 @@ namespace ControlDeAvances
             Comentarios = new HashSet<Comentario>();
         }
 
-        public Guid Id { get; set; }
-        public Guid? IdFase { get; set; }
+        public long Id { get; set; }
+        public long? IdFase { get; set; }
         public Guid? IdUsuarioAlta { get; set; }
         public Guid? IdUsuarioMod { get; set; }
         public string Descripcion { get; set; }

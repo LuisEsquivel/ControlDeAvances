@@ -32,7 +32,7 @@ namespace ControlDeAvances.Controllers
         }
 
 
-        public string Create(Comentario c, Guid idRelacion)
+        public string Create(Comentario c, long idRelacion)
         {
             try
             {

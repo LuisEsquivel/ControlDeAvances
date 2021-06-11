@@ -18,6 +18,7 @@ namespace ControlDeAvances
         }
 
         public virtual DbSet<Comentario> Comentarios { get; set; }
+        public virtual DbSet<Documentacion> Documentacions { get; set; }
         public virtual DbSet<Fase> Fases { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -30,35 +31,62 @@ namespace ControlDeAvances
 
             modelBuilder.Entity<Comentario>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Descripcion).HasColumnType("text");
 
                 entity.Property(e => e.FechaAlta).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaMod).HasColumnType("datetime");
 
-                entity.Property(e => e.IdRelacion).HasColumnType("text");
+                entity.Property(e => e.UsuarioCreador).HasColumnType("text");
+
+                entity.HasOne(d => d.IdRelacionNavigation)
+                    .WithMany(p => p.Comentarios)
+                    .HasForeignKey(d => d.IdRelacion)
+                    .HasConstraintName("FK_Comentarios_Documentacion");
+            });
+
+            modelBuilder.Entity<Documentacion>(entity =>
+            {
+                entity.ToTable("Documentacion");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FechaAlta)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.FechaCaptura).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaMod).HasColumnType("datetime");
+
+                entity.Property(e => e.Imagen).HasColumnType("text");
+
+                entity.Property(e => e.RutaImagen).HasColumnType("text");
+
+                entity.HasOne(d => d.IdFaseNavigation)
+                    .WithMany(p => p.Documentacions)
+                    .HasForeignKey(d => d.IdFase)
+                    .HasConstraintName("FK_Documentacion_Fases");
             });
 
             modelBuilder.Entity<Fase>(entity =>
             {
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.FechaAlta).HasColumnType("datetime");
+                entity.Property(e => e.FechaAlta)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FechaMod).HasColumnType("datetime");
 
                 entity.Property(e => e.Nombre).HasColumnType("text");
             });
 
-
-
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.FechaAlta).HasColumnType("datetime");
+                entity.Property(e => e.FechaAlta)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FechaMod).HasColumnType("datetime");
 
@@ -71,9 +99,9 @@ namespace ControlDeAvances
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.FechaAlta).HasColumnType("datetime");
+                entity.Property(e => e.FechaAlta)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FechaMod).HasColumnType("datetime");
 
@@ -84,6 +112,11 @@ namespace ControlDeAvances
                 entity.Property(e => e.Usuario1)
                     .HasColumnType("text")
                     .HasColumnName("Usuario");
+
+                entity.HasOne(d => d.IdRolNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.IdRol)
+                    .HasConstraintName("FK_Usuarios_Roles");
             });
 
             OnModelCreatingPartial(modelBuilder);
