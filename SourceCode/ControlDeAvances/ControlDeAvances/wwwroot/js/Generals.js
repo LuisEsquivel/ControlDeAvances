@@ -22,20 +22,9 @@ var InfoError = "<center>"
     + "<h1>No se pudo obtener la información!!</h1>"
     + "</center>";
 
-var spinner = "<center>"
-    + "<h1>Cargando...</h1>"
-    + "<div class='preloader-wrapper big active'> "
-    + "<div class='spinner-layer spinner-blue-only' >"
-    + "<div class='circle-clipper left'>"
-    + "<div class='circle'></div>"
-    + "</div><div class='gap-patch'>"
-    + "<div class='circle'></div>"
-    + "</div><div class='circle-clipper right'>"
-    + "<div class='circle'></div>"
-    + "</div>"
-    + "</div >"
-    + "</div >"
-    + "</center>";
+var spinner = "<div class='spinner-border text-info' role='status'>";
+spinner += " < span class='sr-only'> Loading...</span >";
+spinner +=  "</div> ";
 
 
 var formSearch = "<form method='POST' id='formSearched' class='row container-fluid'>"
@@ -365,7 +354,7 @@ async function list(url) {
 
     var container = document.getElementById("container");
     container.innerHTML = spinner;
-    //centrar("container");
+    centrar("container");
     var returnData;
 
 

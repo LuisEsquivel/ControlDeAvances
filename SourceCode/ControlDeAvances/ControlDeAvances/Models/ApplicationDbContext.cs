@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -8,6 +8,7 @@ namespace ControlDeAvances
 {
     public partial class ApplicationDbContext : DbContext
     {
+
         public ApplicationDbContext()
         {
         }
@@ -22,7 +23,6 @@ namespace ControlDeAvances
         public virtual DbSet<Fase> Fases { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

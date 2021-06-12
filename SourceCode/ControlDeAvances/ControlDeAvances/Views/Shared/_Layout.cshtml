@@ -40,6 +40,7 @@
     <!--DataTables JS-->
     <script type="text/javascript" src="~/DataTables/js/addons/datatables.min.js"></script>
     <script src="~/js/Generals.js"></script>
+    <script src="~/js/Documentacion.js"></script>
     <script src="~/Jquery Form Steps/js/sweetalert.min.js"></script>
 
 
@@ -60,38 +61,10 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="/Home/Index"> <img src="~/img/NOVO_logosmall-1.png" class="img-fluid" /> </a>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-
-                    @using ControlDeAvances.Controllers;
-                    @{ 
-                        IEnumerable<Fase> fc;
-
-                        using (ApplicationDbContext context = new ApplicationDbContext())
-                        {
-                            fc = context.Fases.ToList().AsEnumerable();
-                        }
-                     }
-        
-
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Fases
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @{
-
-                                foreach (var item in fc)
-                                {
-                                    <a class="nav-link" asp-area="" asp-controller="Documentacion" asp-action="Get/@item.Id"> @item.Nombre </a>
-                                }
-
-                            }
-                        </div>
-
+                    <li>
+                        <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Documentacion" asp-action="Index"> Documentación </a>
                     </li>
-
-                    </ul>
+                </ul>
 
             </div>
         </div>

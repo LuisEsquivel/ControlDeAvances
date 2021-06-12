@@ -29,10 +29,30 @@ namespace ControlDeAvances.Controllers
             return View();
         }
 
+
+        [HttpPost]
         public string List(int idFase = 0)
         {
-            if (idFase == 0) return JsonConvert.SerializeObject(repository.GetAll());
-            return JsonConvert.SerializeObject(repository.GetByValues(x => x.IdFase == idFase));
+
+            List<Documentacion> lst = new List<Documentacion>();
+
+            try
+            {
+
+                if (idFase == 0) lst = repository.GetAll().ToList();
+                else lst = repository.GetByValues(x => x.IdFase == idFase).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                return "Error " + ex.ToString();
+            }
+
+
+            if (lst.Count == 0) return "0";
+
+            return JsonConvert.SerializeObject(lst);
+
         }
 
 
@@ -56,7 +76,7 @@ namespace ControlDeAvances.Controllers
         }
 
 
-        public string Create(Documentacion i,  IFormFile file)
+        public string Create(Documentacion i, IFormFile file)
         {
             try
             {
@@ -74,7 +94,8 @@ namespace ControlDeAvances.Controllers
                 if (repository.Create(i)) return "Información Almacenada";
                 else return "{}";
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return "Error " + ex.ToString();
             }
