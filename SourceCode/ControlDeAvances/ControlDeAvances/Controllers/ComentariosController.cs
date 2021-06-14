@@ -26,9 +26,17 @@ namespace ControlDeAvances.Controllers
         }
 
 
-        public IEnumerable<Comentario> GetComentarios(string idRelacion)
+        public string GetComentarios(string idRelacion)
         {
-            return repository.GetByValues(x => x.IdRelacion.ToString() == idRelacion);     
+            var c = repository.GetByValues(x => x.IdRelacion.ToString() == idRelacion);
+            var json = "";
+            foreach(var item in c)
+            {
+                var idComentario = "Comment" + item.Id;
+                json += "<div id='"+idComentario+"'>" +item.UsuarioCreador + ": "+ item.Descripcion+" <button class='btn btn-sm btn-danger' style='cursor:pointer;' onclick='Delete('"+item.Id+"')'>Eliminar</button> </div>" + Environment.NewLine;
+            }
+
+            return json;
         }
 
 

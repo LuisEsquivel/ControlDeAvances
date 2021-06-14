@@ -34,14 +34,20 @@ namespace ControlDeAvances.Controllers
         public string List(int idFase = 0)
         {
 
-            List<Documentacion> lst = new List<Documentacion>();
+            //List<Documentacion> lst = new List<Documentacion>();
+            object lst = null;
 
             try
             {
-
-                if (idFase == 0) lst = repository.GetAll().ToList();
-                else lst = repository.GetByValues(x => x.IdFase == idFase).ToList();
-
+                lst = repository.GetByValues(x => x.IdFase == idFase).ToList().Select(
+                        d => new
+                        {
+                            d.Id,
+                            d.Descripcion,
+                            d.RutaImagen,
+                            Comentarios = c.GetComentarios(d.Id.ToString())
+                        }
+                     ).ToList();
             }
             catch (Exception ex)
             {
@@ -49,7 +55,7 @@ namespace ControlDeAvances.Controllers
             }
 
 
-            if (lst.Count == 0) return "0";
+            if (lst == null) return "0";
 
             return JsonConvert.SerializeObject(lst);
 

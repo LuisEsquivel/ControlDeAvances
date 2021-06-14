@@ -1296,3 +1296,15 @@ function AddRow(data, idTable, arrayCellsData) {
     tr.setAttributeNode(att);
 
 }
+
+
+function ZoomIn() {
+    var GFG = document.getElementById("img");
+    var currHeight = GFG.clientHeight;
+    GFG.style.height = (currHeight + 40) + "px";
+}
+function ZoomOut() {
+    var GFG = document.getElementById("img");
+    var currHeight = GFG.clientHeight;
+    GFG.style.height = (currHeight - 40) + "px";
+}

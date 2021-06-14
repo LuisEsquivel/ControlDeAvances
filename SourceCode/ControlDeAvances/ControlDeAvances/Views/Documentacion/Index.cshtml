@@ -34,19 +34,24 @@
 <h3 class="text-center">Avance</h3>
 <div class="row text-center">
     <div class="col-md-8 ml-auto mr-auto">
-        <img src="~/img/descarga (10).png" class="img-fluid" style="width: 25%;" />
+        <img src="~/img/graficaf1.jpg" class="img-fluid" />
     </div>
 </div>
 
 <div class="w-50 ml-auto mr-auto">
 
-    <div id="container ">
+    <div id="container">
 
         <div class="container-fluid ml-4">
 
             <div id="carousel-example" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner row mx-auto mt-3 pr-5 pl-5" role="listbox" id="carousel-inner">
+
+
+                </div>
+
+                <div class="carousel-inner row w-100 mx-auto mt-3 pr-5 pl-5" role="listbox" id="carousel-inner">
 
 
                 </div>
@@ -72,10 +77,81 @@
 </div>
 
 
-<div class="row">
-    <div class="col-md-8 ml-auto mr-auto">
-        <button class="btn btn-info text-center w-100 mt-2">COMENTARIOS</button>
-        <button class="btn btn-info text-center w-100 mt-2">NOMBRE DE LA PERSONA QUE ASIGNA EL COMENTARIO</button>
-    </div>
+
+<!--<div class="row d-flex justify-content-center">
+
+    <button class="btn btn-info btn-sm text-center mt-2">Comentar</button>
+
+    <div id="ComentaiosId">
+
+    </div>-->
+
+    @*<button class="btn btn-info text-center w-100 mt-2">NOMBRE DE LA PERSONA QUE ASIGNA EL COMENTARIO</button>*@
+<!--</div>-->
+
+
+
+@*<div class="container text-center my-3">
+        <h2 class="font-weight-light">Bootstrap 4 - Multi Item Carousel</h2>
+        <div class="row mx-auto my-auto">
+            <div id="carousel-example" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner w-100" role="listbox" id="carousel-inner">
+
+
+                </div>
+                <a class="carousel-control-prev w-auto" href="#carousel-example" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next w-auto" href="#carousel-example" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <h5 class="mt-2">Advances one slide at a time</h5>
+    </div>*@
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <span class="close" style="cursor:pointer;">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
 </div>
 
+
+
+<script>
+
+    function ZoomImage(src, alt) {
+
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+
+        modal.style.display = "block";
+        modalImg.src = src;
+        captionText.innerHTML = alt;
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    }
+
+    window.addEventListener("keyup", function (event) {
+        if (event.keyUp == 27) {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    }, false);
+
+</script>
