@@ -64,6 +64,11 @@ body {
   margin-bottom: 60px;
 }
 
+@media only screen and (min-width: 768px) {
+    #modal-width {
+       width: 70% !important;
+    }
+}
 
 
 .carousel .carousel-item {
@@ -88,10 +93,8 @@ body {
 }
 
 
-
-
-
-/*@media (max-width: 768px) {
+/*
+@media (max-width: 768px) {
     .carousel-inner .carousel-item > div {
         display: none;
     }
@@ -105,24 +108,25 @@ body {
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
     display: flex;
-}*/
+}
 
-/* display 3 */
-/*@media (min-width: 768px) {
+
+@media (min-width: 768px) {
 
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
-        transform: translateX(33.333%);
+        transform: translateX(45%);
     }
 
     .carousel-inner .carousel-item-left.active,
     .carousel-inner .carousel-item-prev {
-        transform: translateX(-33.333%);
+        transform: translateX(-45%);
     }
 }
 
 .carousel-inner .carousel-item-right,
 .carousel-inner .carousel-item-left {
     transform: translateX(0);
-}*/
+}
 
+*/
