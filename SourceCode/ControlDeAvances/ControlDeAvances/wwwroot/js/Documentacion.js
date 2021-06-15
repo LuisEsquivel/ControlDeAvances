@@ -67,13 +67,20 @@ async function Add() {
 
 
 async function AddComment() {
-    var Id = "Comentarios" + document.getElementById("IdRelacion").value;
+
     var form = await document.getElementById("form");
 
-    var data = await window.add("/Comentarios/Create", form, "", false, "");
+    form.onsubmit = async (e) => {
+        e.preventDefault();
 
-    if (data != '0' && !data.toString().includes("Error Al Guardar Comentario")) {
-       await AddCommentToHtml(data, Id);
+        var Id = "Comentarios" + document.getElementById("IdRelacion").value;
+
+        var data = await window.add("/Comentarios/Create", form, "", false, "");
+
+        if (data != '0' && !data.toString().includes("Error Al Guardar Comentario")) {
+            await AddCommentToHtml(data, Id);
+        }
+
     }
 
 }
@@ -178,7 +185,7 @@ function CreateSlide(data) {
 
             Card += "<div class='card-footer text-center'>"; //start card footer
             Card += "<div class='row'>";
-            Card += "<a class='card-title  col-sm-12' >" + descripcion + "</a>";
+            Card += "<a class='card-title col-sm-12 h4' >" + descripcion + "</a>";
             Card += "</div>";
 
             Card += "<div class='w-100 ml-auto'> <button id='" + data[i]["Id"] + "' class='btn btn-sm btn-info' onclick='window.AbrirFormulario(1); LlenarFormulario(" + data[i]["Id"] + "); ')' > Comentar </button> </div>"
@@ -218,6 +225,7 @@ function imgError(image) {
 
 
 function LlenarFormulario(id) {
+    window.LimpiarFormulario();
     $("#IdRelacion").val(id);
 }
 
@@ -256,6 +264,33 @@ function Delete(id) {
 
 
 
+function ZoomImage(src, alt) {
 
- 
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+
+    modal.style.display = "block";
+    modalImg.src = src;
+    captionText.innerHTML = alt;
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+}
+
+window.addEventListener("keyup", function (event) {
+    if (event.keyUp == 27) {
+        $('#myModal').modal('hide')
+    }
+}, false);
+
+
 

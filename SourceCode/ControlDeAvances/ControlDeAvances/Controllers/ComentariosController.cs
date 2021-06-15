@@ -30,15 +30,21 @@ namespace ControlDeAvances.Controllers
         public string GetComentarios(string idRelacion)
         {
             var c = repository.GetByValues(x => x.IdRelacion.ToString() == idRelacion);
+            var html = "";
 
-            var IdComentarios = "Comentarios" + idRelacion;
-            var html = "<div id='"+IdComentarios+"'>";
-            foreach(var item in c)
+            if (c != null && c.Count() > 0)
             {
-                var idComentario = "Comment" + item.Id;
-                html += "<div id='"+idComentario+"'>" +item.UsuarioCreador + ": "+ item.Descripcion+ " <i class='fa fa-trash fa-2x' style='cursor:pointer; color:red;' onclick='Delete(" + item.Id+")'></i> </div>" + Environment.NewLine;
+                var IdComentarios = "Comentarios" + idRelacion;
+                html = "<h5 class='mt-4'> Comentarios </h5>";
+                html += "<div id='" + IdComentarios + "'>";
+                foreach (var item in c)
+                {
+                    var idComentario = "Comment" + item.Id;
+                    html += "<div id='" + idComentario + "'>" + item.UsuarioCreador + ": " + item.Descripcion + " <i class='fa fa-trash fa-2x' style='cursor:pointer; color:red;' onclick='Delete(" + item.Id + ")'></i> </div>" + Environment.NewLine;
+                }
+                html += "</div>";
             }
-            html += "</div>";
+
             return html;
         }
 
