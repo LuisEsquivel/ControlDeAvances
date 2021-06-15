@@ -7,9 +7,12 @@ var arrayColumnsTable = ["Descripción", "Activo", "Fecha Alta"];
 
 $(document).ready(async () => {
 
-    //$('.carousel').carousel({
-    //    interval: 10000,
-    //});
+
+    $('#CmbFase').val(1).change();
+
+    $('.carousel').carousel({
+        interval: false,
+    });
 
 
     $("#CmbFase").change(async () => {
@@ -19,16 +22,15 @@ $(document).ready(async () => {
 
     });
 
-    //$('#carousel-example').on('slide.bs.carousel', function (event) {
-    //    var idItemCarruselActive = document.querySelector('.carousel-item.active').id
 
-    //    document.getElementById("ComentaiosId").innerHTML = idItemCarruselActive;
+    $('#carousel-example').on('slide.bs.carousel', function (event) {
 
-    //});
+        //var idItemCarruselActive = document.querySelector('.carousel-item.active').id
+        //var totalItems = $('.carousel').find(".carousel-item").length;
+        //var item = $('.carousel').find(".carousel-item.active").index();
+        //if (item == 0 || item == "0") { item == 1;}
+        //document.getElementById("NumeroDeImagen").innerHTML = item + " de " + totalItems;
 
-    $("#img").on("click", () => {
-        alert("CALABAZO");
-        window.ZoomIn();
     });
 
 
@@ -63,6 +65,29 @@ async function Add() {
     await window.add("/Documentacion/Add", form, arrayColumnsTable, true, arrayCellsData)
 }
 
+
+async function AddComment() {
+    var Id = "Comentarios" + document.getElementById("IdRelacion").value;
+    var form = await document.getElementById("form");
+
+    var data = await window.add("/Comentarios/Create", form, "", false, "");
+
+    if (data != '0' && !data.toString().includes("Error Al Guardar Comentario")) {
+       await AddCommentToHtml(data, Id);
+    }
+
+}
+
+
+async function AddCommentToHtml(data, Id) {
+
+    if (Id != null) {
+        var elementHtml = document.getElementById(Id);
+        elementHtml.innerHTML = "";
+        elementHtml.innerHTML = data;
+    }
+
+}
 
 
 
@@ -105,7 +130,7 @@ function CreateSlide(data) {
         return;
     }
 
-
+    document.getElementById("carousel-inner").innerHTML = "";
 
     var Slide = "";
     var SlideId = 1;
@@ -154,14 +179,14 @@ function CreateSlide(data) {
             Card += "<div class='card-footer text-center'>"; //start card footer
             Card += "<div class='row'>";
             Card += "<a class='card-title  col-sm-12' >" + descripcion + "</a>";
+            Card += "</div>";
 
-            //Card += "<div class='ml-auto'> <button id='" + data[i]["Id"] + "' class='btn btn-sm btn-info'> Comentar </button> </div>"
-            //Card += "<div class='mt-5'>";
-            //Card += comentarios;
-            //Card += "</div>";
-            //Card += "</div>";
+            Card += "<div class='w-100 ml-auto'> <button id='" + data[i]["Id"] + "' class='btn btn-sm btn-info' onclick='window.AbrirFormulario(1); LlenarFormulario(" + data[i]["Id"] + "); ')' > Comentar </button> </div>"
 
-
+            Card += "<div class='row'>";
+            Card += "<div class='col-sm-12'>";
+            Card += comentarios;
+            Card += "</div>";
 
             Card += "</div>"; // end card footer
 
@@ -192,6 +217,12 @@ function imgError(image) {
 
 
 
+function LlenarFormulario(id) {
+    $("#IdRelacion").val(id);
+}
+
+
+
 
 async function GetComments(url, id) {
 
@@ -216,13 +247,15 @@ async function GetComments(url, id) {
         }
     });
 
+}
 
 
-    function AddComment(data) {
+function Delete(id) {
+    window.DeleteById("/Comentarios/Delete", id);
+}
 
-    }
+
 
 
  
 
-}

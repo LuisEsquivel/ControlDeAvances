@@ -24,7 +24,7 @@
 
         @foreach (var item in f)
         {
-            <option class="nav-link" value="@item.Id"> @item.Nombre </option>
+        <option class="nav-link" value="@item.Id"> @item.Nombre </option>
         }
 
     </select>
@@ -78,39 +78,13 @@
 
 
 
-<!--<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center">
 
-    <button class="btn btn-info btn-sm text-center mt-2">Comentar</button>
+    <div id="NumeroDeImagen">
 
-    <div id="ComentaiosId">
+    </div>
 
-    </div>-->
-
-    @*<button class="btn btn-info text-center w-100 mt-2">NOMBRE DE LA PERSONA QUE ASIGNA EL COMENTARIO</button>*@
-<!--</div>-->
-
-
-
-@*<div class="container text-center my-3">
-        <h2 class="font-weight-light">Bootstrap 4 - Multi Item Carousel</h2>
-        <div class="row mx-auto my-auto">
-            <div id="carousel-example" class="carousel slide w-100" data-ride="carousel">
-                <div class="carousel-inner w-100" role="listbox" id="carousel-inner">
-
-
-                </div>
-                <a class="carousel-control-prev w-auto" href="#carousel-example" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next w-auto" href="#carousel-example" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        <h5 class="mt-2">Advances one slide at a time</h5>
-    </div>*@
+</div>
 
 
 
@@ -119,6 +93,58 @@
     <span class="close" style="cursor:pointer;">&times;</span>
     <img class="modal-content" id="img01">
     <div id="caption"></div>
+</div>
+
+
+<!-- Modal Comentario-->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="ModalTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+
+
+            <form method="post" id="form" class="border border-right-0 border-left-0 border-secondary rounded pt-5 pb-5">
+
+                <div class="modal-body">
+
+                    <div class="form-group" style="height:0 !important;">
+                        <input class="form-control" id="IdRelacion" name="IdRelacion" placeholder="Id" readonly />
+                    </div>
+
+                    <div class="form-row mt-3">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 mt-3">
+                            <label for="DescripcionVar">Comentario</label>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Comentario" required maxlength="200">
+                           </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-3">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 mt-3">
+                            <label for="UsuarioCreador">¿Quién comenta?</label>
+                            <input class="form-control" id="UsuarioCreador" name="UsuarioCreador" placeholder="¿Quién Comenta?" required maxlength="30" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-5">
+                        <button type="submit" class="btn btn-primary" id="BtnAdd" onclick="AddComment();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" id="BtnCancelar" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>
 
 
@@ -153,5 +179,6 @@
             modal.style.display = "none";
         }
     }, false);
+
 
 </script>

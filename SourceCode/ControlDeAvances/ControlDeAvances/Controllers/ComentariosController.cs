@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ControlDeAvances.Interface.IGenericRepository;
 using ControlDeAvances.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ControlDeAvances.Controllers
 {
@@ -29,35 +30,39 @@ namespace ControlDeAvances.Controllers
         public string GetComentarios(string idRelacion)
         {
             var c = repository.GetByValues(x => x.IdRelacion.ToString() == idRelacion);
-            var json = "";
+
+            var IdComentarios = "Comentarios" + idRelacion;
+            var html = "<div id='"+IdComentarios+"'>";
             foreach(var item in c)
             {
                 var idComentario = "Comment" + item.Id;
-                json += "<div id='"+idComentario+"'>" +item.UsuarioCreador + ": "+ item.Descripcion+" <button class='btn btn-sm btn-danger' style='cursor:pointer;' onclick='Delete('"+item.Id+"')'>Eliminar</button> </div>" + Environment.NewLine;
+                html += "<div id='"+idComentario+"'>" +item.UsuarioCreador + ": "+ item.Descripcion+ " <i class='fa fa-trash fa-2x' style='cursor:pointer; color:red;' onclick='Delete(" + item.Id+")'></i> </div>" + Environment.NewLine;
             }
-
-            return json;
+            html += "</div>";
+            return html;
         }
 
 
+        [HttpPost]
         public string Create(Comentario c, long idRelacion)
         {
             try
             {
                 c.IdRelacion = idRelacion;
+                c.FechaAlta = DateTime.Now;
 
                 if (repository.Create(c))
                 {
-                    return "Información Almacenada";
+                    var comments = GetComentarios(idRelacion.ToString());
+                    return comments;
                 }
 
-
-                return "No se pudo guardar el comentario";
+                return "0";
 
             }
             catch (Exception ex)
             {
-                return "Error " + ex.ToString();
+                return "Error Al Guardar Comentario" + ex.ToString();
             }
         }
 
@@ -80,11 +85,13 @@ namespace ControlDeAvances.Controllers
             }
         }
 
-        public string Delete(string id)
+
+        [HttpDelete]
+        public string Delete(long id)
         {
             try
             {
-                if (repository.Delete(id)) return "Comentario Eliminado";
+                if (repository.Delete(id)) return "deleted";
                 else return "No se pudo eliminar el comentario";
 
             }

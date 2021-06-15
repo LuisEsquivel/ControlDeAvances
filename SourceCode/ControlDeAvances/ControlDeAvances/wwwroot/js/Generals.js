@@ -290,12 +290,11 @@ async function add(urlAdd, formData, arrayColumnas, BtnAddUser = false, arrayCel
         data: new FormData(formData),
         contentType: false,
         processData: false,
-        dataType: "json",
+        dataType: "text",
 
         success: function (result) {
 
-
-            if (JSON.stringify(result) == '{}') {
+            if (result == '{}') {
                 swal(Error, "", "warning");
                 return
             }
@@ -310,7 +309,7 @@ async function add(urlAdd, formData, arrayColumnas, BtnAddUser = false, arrayCel
                 return;
             }
 
-            if (JSON.stringify(result).includes("Ya Existe")) {
+            if (result.includes("Ya Existe")) {
                 swal(result, "", "warning");
                 return;
             }
@@ -327,7 +326,12 @@ async function add(urlAdd, formData, arrayColumnas, BtnAddUser = false, arrayCel
                 if (arrayColumnas.length > 0) {
                     Table(arrayColumnas, result, arrayCellsData);
                 }
-                else { returnData = result; }
+                else {
+                    returnData = result;
+                    swal(InformaciónAlmacenada, "", "success");
+                    CerrarFormulario();
+                    return returnData;
+                }
             }
 
             swal(InformaciónAlmacenada, "", "success");
@@ -335,8 +339,8 @@ async function add(urlAdd, formData, arrayColumnas, BtnAddUser = false, arrayCel
             return;
 
         },
-        error: function () {
-            console.log("No se ha podido obtener la información");
+        error: function (e) {
+            console.log("No se ha podido obtener la información " + e);
             $("#container").empty();
             container.innerHTML = InfoError;
             return;
@@ -670,7 +674,7 @@ async function DeleteById(url, id) {
 
 
                         if (data == "deleted") {
-                            var itemId = id.toString() + id.toString();
+                            var itemId = "Comment" + id.toString();
                             if (data == "deleted") {
                                 document.getElementById(itemId).remove();
                                 deleted = true;
@@ -679,6 +683,7 @@ async function DeleteById(url, id) {
                                     swal(EliminadoCorrectamente, {
                                         icon: "success",
                                     });
+
                                 }
 
                             }
@@ -1298,13 +1303,3 @@ function AddRow(data, idTable, arrayCellsData) {
 }
 
 
-function ZoomIn() {
-    var GFG = document.getElementById("img");
-    var currHeight = GFG.clientHeight;
-    GFG.style.height = (currHeight + 40) + "px";
-}
-function ZoomOut() {
-    var GFG = document.getElementById("img");
-    var currHeight = GFG.clientHeight;
-    GFG.style.height = (currHeight - 40) + "px";
-}
