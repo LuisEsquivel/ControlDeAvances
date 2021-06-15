@@ -68,6 +68,16 @@ body {
     #modal-width {
        width: 70% !important;
     }
+
+    .card-img {
+        height: 400px !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card-img {
+        height: 200px !important;
+    }
 }
 
 
@@ -77,9 +87,6 @@ body {
 }
 
 
-.card-img {
-    height: 350px !important;
-}
 
 .card-img-top {
     width: 100%;
@@ -92,6 +99,18 @@ body {
     border-color: #172C80 !important;
 }
 
+
+.abs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.hover-img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
 
 /*
 @media (max-width: 768px) {

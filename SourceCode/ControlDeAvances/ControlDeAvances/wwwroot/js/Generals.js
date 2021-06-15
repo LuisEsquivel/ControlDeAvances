@@ -823,18 +823,21 @@ function LimpiarFormulario() {
 
 async function AbrirFormulario(operacion) {
 
+    var title = $("#ModalTitle").text();
+
     if (operacion == 1) {
         LimpiarFormulario();
         $("#BtnUpdate").hide();
         $("#BtnAdd").show();
-        $("#ModalTitle").text("Agregar " + $("#Titulo").text());
+        $("#ModalTitle").text(title.toString().replace("Actualizar", "Agregar"));
         $("#DivIsActive").hide();
     }
 
     if (operacion == 2) {
         $("#BtnUpdate").show();
         $("#BtnAdd").hide();
-        $("#ModalTitle").text("Actualizar " + $("#Titulo").text());
+      
+        $("#ModalTitle").text(title.toString().replace("Agregar", "Actualizar"));
         $("#DivIsActive").show();
         document.getElementById("BtnAdd").classList.remove("mt-3");
         if ($("#BtnCancelar").length > 0) {

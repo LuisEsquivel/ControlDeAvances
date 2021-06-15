@@ -177,7 +177,7 @@ function CreateSlide(data) {
             Card += "<div class='card-rounded'>"; // start card
 
             Card += "<div id='img' class='card-img'>"
-            Card += "<img onclick='ZoomImage(this.src, this.alt);' class='card-img-top img-fluid' onerror='imgError(this);' src='" + imagen + "'  style='cursor:pointer;'>";
+            Card += "<img onclick='ZoomImage(this.src, this.alt);' class='card-img-top img-fluid hover-img' onerror='imgError(this);' src='" + imagen + "'  style='cursor:pointer;'>";
             Card += "</div>";
 
             //Card += "<div class='card-body'>"; // start card body

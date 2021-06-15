@@ -16,25 +16,28 @@
 
 
 <div class="d-flex justify-content-center mt-5">
-    <label>Fase</label>
-    <select id="CmbFase" class="form-control col-2">
 
-        <option class="nav-link" value="0"> --SELECCIONE-- </option>
+    <div class="form-group">
+        <label for="CmbFase" class="h3">Fase</label>
+        <select id="CmbFase" class="form-control">
 
+            <option class="nav-link" value="0"> --SELECCIONE-- </option>
 
-        @foreach (var item in f)
-        {
-        <option class="nav-link" value="@item.Id"> @item.Nombre </option>
-        }
+            @foreach (var item in f)
+            {
+                <option class="nav-link" value="@item.Id"> @item.Nombre </option>
+            }
 
-    </select>
+        </select>
+    </div>
+
 </div>
 
 
 <h3 class="text-center">Avance</h3>
 <div class="row text-center">
     <div class="col-md-8 ml-auto mr-auto">
-        <img src="~/img/graficaf1.jpg" class="img-fluid" />
+        <img onclick="ZoomImage(this.src, this.alt);" src="~/img/graficaf1.jpg" class="img-fluid hover-img" style="height:250px !important;" />
     </div>
 </div>
 
@@ -89,9 +92,13 @@
 
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="background-color:black;">
     <span class="close text-white" style="cursor:pointer; font-size:50px;">&times;</span>
-    <img class="img-fluid" id="img01">
+
+    <div class="w-75 mr-auto ml-auto abs-center">
+        <img class="img-fluid" id="img01">
+    </div>
+
     <div id="caption"></div>
 </div>
 
@@ -101,7 +108,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="ModalTitle">Modal title</h5>
+                <h5 class="modal-title text-white" id="ModalTitle">Actualizar Comentario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
