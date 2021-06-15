@@ -1,39 +1,162 @@
-﻿@*@{
-    ViewData["Title"] = "Home Page";
+﻿
+
+<script src="~/js/Documentacion.js"></script>
+
+
+@using ControlDeAvances.Helpers;
+@{
+
+    List<Fase> f = new List<Fase>();
+
+    var c = new Context();
+    var context = c.DbContext();
+    f = context.Fases.ToList();
+
 }
 
 
-<div class="container">
-    <h1 class="text-center">Fase 1</h1>
-    <h3 class="text-center">Avance</h3>
-    <div class="row text-center">
-        <div class="col-md-8 ml-auto mr-auto">
-            <img src="~/img/descarga (10).png" class="img-fluid" style="width: 25%;" />
+<div class="d-flex justify-content-center mt-5">
+
+    <div class="form-group">
+
+        <label for="CmbFase" class="h3 w-100 text-center">Fase</label>
+
+        <select id="CmbFase" class="form-control">
+
+            <option class="nav-link" value="0"> --SELECCIONE-- </option>
+
+            @foreach (var item in f)
+            {
+                <option class="nav-link" value="@item.Id"> @item.Nombre </option>
+            }
+
+        </select>
+    </div>
+
+</div>
+
+
+<h3 class="text-center">Avance</h3>
+<div class="row text-center">
+    <div class="col-md-8 ml-auto mr-auto">
+        <img onclick="ZoomImage(this.src, this.alt);" src="~/img/graficaf1.jpg" class="img-fluid hover-img" style="height:250px !important;" />
+    </div>
+</div>
+
+<div class="ml-auto mr-auto" id="modal-width">
+
+    <div id="container">
+
+        <div class="container-fluid">
+
+            <div id="carousel-example" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner row mx-auto mt-3 pr-5 pl-5" role="listbox" id="carousel-inner">
+
+
+                </div>
+
+                <div class="carousel-inner row w-100 mx-auto mt-3 pr-5 pl-5" role="listbox" id="carousel-inner">
+
+
+                </div>
+
+
+                <div class="mr-5">
+                    <a class="carousel-control-prev mr-5" href="#carousel-example" role="button" data-slide="prev" style="width:30px;">
+                        <span aria-hidden="true"><img src="~/img/carrusel/menor.png" class="img-fluid" /></span>
+                    </a>
+                </div>
+
+                <div class="ml-5">
+                    <a class="carousel-control-next ml-5" href="#carousel-example" role="button" data-slide="next" style="width:30px;">
+                        <span aria-hidden="true"><img src="~/img/carrusel/mayor.png" class="img-fluid" /></span>
+                    </a>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
-    <div class="text-center">
-        <button class="btn btn-info text-center w-20">13/06/21</button>
-        <button class="btn btn-info text-center w-20 ml-3">13/06/21</button>
-        <button class="btn btn-info text-center w-20 ml-3">13/06/21</button>
+</div>
+
+
+
+<div class="row d-flex justify-content-center">
+
+    <div id="NumeroDeImagen">
+
     </div>
 
-    <div class="row">
-        <div class="col-md-8 ml-auto mr-auto mt-2">
-            <img src="~/img/Redes.jpg" class="img-fluid" />
+</div>
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal" style="background-color:black;">
+    <span class="close text-white" style="cursor:pointer; font-size:50px;">&times;</span>
+
+    <div class="w-75 mr-auto ml-auto abs-center">
+        <img class="img-fluid" id="img01">
+    </div>
+
+    <div id="caption"></div>
+</div>
+
+
+<!-- Modal Comentario-->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="ModalTitle">Actualizar Comentario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+
+
+            <form method="post" id="form" class="border border-right-0 border-left-0 border-secondary rounded pt-5 pb-5">
+
+                <div class="modal-body">
+
+                    <div class="form-group" style="height:0 !important;">
+                        <input class="form-control" id="IdRelacion" name="IdRelacion" placeholder="Id" readonly />
+                    </div>
+
+                    <div class="form-row mt-5">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <label for="Descripcion">Comentario</label>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Comentario" required maxlength="200" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-5">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <label for="UsuarioCreador">¿Quién comenta?</label>
+                            <input class="form-control" id="UsuarioCreador" name="UsuarioCreador" placeholder="¿Quién Comenta?" required maxlength="30" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-5">
+                        <button type="submit" class="btn btn-primary" id="BtnAdd" onclick="AddComment();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" id="BtnCancelar" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-            <button class="btn btn-info text-center w-100 mt-2">DESCRIPCION</button>
-            <button class="btn btn-info text-center w-100 mt-2">COMENTARIOS</button>
-            <button class="btn btn-info text-center w-100 mt-2">NOMBRE DE LA PERSONA QUE ASIGNA EL COMENTARIO</button>
-        </div>
-    </div>
 
-</div>*@
 
-<section>
-    <img src="~/img/portadaNovo.jpeg" style="width: 100%;" class="img-fluid" />
-</section>
+<div class="mt-5">
+
+</div>

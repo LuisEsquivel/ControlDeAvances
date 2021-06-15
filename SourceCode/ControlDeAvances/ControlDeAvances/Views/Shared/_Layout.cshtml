@@ -57,13 +57,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="/Home/Index"> <img src="~/img/NOVO_logosmall-1.png" class="img-fluid" /> </a>
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li>
-                        <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Documentacion" asp-action="Index"> Avances </a>
-                    </li>
-                </ul>
-
+                <a class="navbar-brand text-white h4" href="/Home/Index"> Inicio </a>
             </div>
         </div>
     </nav>
@@ -78,42 +72,6 @@
 
 
 
-
-    <footer class="footer bg-secondary pt-5 mt-5" id="footer">
-
-        <div class="text-center">
-            <a href="/Home/Index"> <i class="fa fa-home fa-5x" style="color:lightseagreen"> </i></a>
-
-
-            <ul class="list-unstyled list-inline text-center py-2">
-                <li class="list-inline-item">
-                    @*@{
-                        if (g.GetCookieValue(g.CockieName) == null && url != "/Registrarse/Index")
-                        {
-                            <a href="/Registrarse/Index" class="btn btn-danger btn-rounded">Registrarse</a>
-                        }
-                        else if (g.GetCookieValue(g.CockieName) == null && url != "/Login/Index")
-                        {
-                            <a href="/Login/Index" class="btn btn-primary btn-rounded">Iniciar Sesión</a>
-                        }
-                    }*@
-                </li>
-            </ul>
-
-            <hr>
-
-
-            <p class="mt-3 pFooter h6">Todos los Derechos Reservados @DateTime.Now.Year  Novosys</p>
-            <ul>
-                <li class="list-inline-item"> <i class="fa fa-facebook fa-2x" style="color:blue"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
-                <li class="list-inline-item"> <i class="fa fa-youtube fa-2x" style="color:darkred"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
-                <li class="list-inline-item"> <i class="fa fa-instagram fa-2x" style="color:hotpink"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
-                <li class="list-inline-item"> <i class="fa fa-whatsapp fa-2x" style="color:green"> <a href="https://www.facebook.com/Novosysmx" target="_blank">   </a> </i>  </li>
-            </ul>
-        </div>
-
-        <br />
-    </footer>
 
 </body>
 </html>
