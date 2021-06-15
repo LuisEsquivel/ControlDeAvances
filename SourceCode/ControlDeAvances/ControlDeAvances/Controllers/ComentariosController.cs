@@ -35,8 +35,8 @@ namespace ControlDeAvances.Controllers
             if (c != null && c.Count() > 0)
             {
                 var IdComentarios = "Comentarios" + idRelacion;
-                html = "<h5 class='mt-4'> Comentarios </h5>";
                 html += "<div id='" + IdComentarios + "'>";
+                html += "<h5 class='mt-4'> Comentarios </h5>";
                 foreach (var item in c)
                 {
                     var idComentario = "Comment" + item.Id;
