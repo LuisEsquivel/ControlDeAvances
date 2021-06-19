@@ -2,11 +2,16 @@
 
 var arrayCellsData = ["Id", "Descripcion", "ActivoBit", "FechaAlta"];
 var arrayColumnsTable = ["Descripción", "Activo", "Fecha Alta"];
+var totalItems = 0;
 
 
+//document.addEventListener("DOMContentLoaded", async function (event) {
+   
+//});
 
 $(document).ready(async () => {
 
+    //CountItems();
 
     $('#CmbFase').val(1).change();
 
@@ -24,13 +29,7 @@ $(document).ready(async () => {
 
 
     $('#carousel-example').on('slide.bs.carousel', function (event) {
-
-        //var idItemCarruselActive = document.querySelector('.carousel-item.active').id
-        //var totalItems = $('.carousel').find(".carousel-item").length;
-        //var item = $('.carousel').find(".carousel-item.active").index();
-        //if (item == 0 || item == "0") { item == 1;}
-        //document.getElementById("NumeroDeImagen").innerHTML = item + " de " + totalItems;
-
+        //CountItems();
     });
 
 
@@ -82,6 +81,21 @@ async function AddComment() {
         }
 
     }
+
+}
+
+
+function CountItems() {
+
+    //var idItemCarruselActive = document.querySelector('.carousel-item.active').id
+    totalItems = $("#carousel-example div.carousel-item").length;
+    alert(totalItems);
+    var item = $('.carousel').find(".carousel-item.active").index();
+    item = item + 1;
+    if (item <= 0) {
+        item = 1;
+    }
+    document.getElementById("NumeroDeImagen").innerHTML = item + " de " + totalItems;
 
 }
 

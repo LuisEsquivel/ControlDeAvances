@@ -46,7 +46,7 @@ namespace ControlDeAvances.Controllers
                             d.RutaImagen,
                             Comentarios = c.GetComentarios(d.Id.ToString())
                         }
-                     ).ToList();
+                     ).ToList().OrderByDescending(x => x.Id).ToList();
             }
             catch (Exception ex)
             {
